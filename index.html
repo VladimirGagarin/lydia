@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lydiah App Download</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      text-align: center;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      -webkit-back-drop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      z-index: 1;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #bbb;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #b83280;
+      font-weight: bold;
+    }
+
+    a.download-btn {
+      background: #b83280;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    a.download-btn:hover {
+      background: #8a245b;
+    }
+
+    .heart {
+      font-size: 2rem;
+      animation: pulse 1.5s infinite;
+      margin-top: 1rem;
+      color: red;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Download Lydiah App 💕</h1>
+    <p>For Android devices</p>
+    <a href="https://your-apk-link.com/LydiahApp.apk" class="download-btn" download>Download APK</a>
+    <div class="heart">❤️</div>
+  </div>
+
+  <script>
+    const images = [
+      'amani.jpg', 'amani2.jpg',
+      'amara.jpg', 'elan.jpg',
+      'logo.png', 'nuru.jpg',
+      'sanaa.jpg', 'worldlight.jpg'
+    ];
+
+    let currentIndex = 0;
+
+    function slideImages() {
+      document.body.style.backgroundImage = `url('${images[currentIndex]}')`;
+      currentIndex = (currentIndex + 1) % images.length;
+    }
+
+    // Start with the first image
+    slideImages();
+
+    // Rotate every 5 seconds
+    setInterval(slideImages, 5000);
+  </script>
+</body>
+</html>
