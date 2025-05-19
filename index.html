@@ -46,6 +46,8 @@
 <link rel="shortcut icon" href="https://vladimirgagarin.github.io/lydia/sanaa.jpg" type="image/x-icon" />
 
 
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -101,7 +103,7 @@
       border-radius: 10px;
       font-size: 1rem;
       transition: background 0.3s ease;
-      margin-top: 50px;
+      margin-top: 150px;
     }
 
     a.download-btn:hover {
@@ -118,6 +120,19 @@
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.2); }
+    }
+
+    .container {
+      opacity: 0;
+      transform: scale(0.95);
+      animation: fadeInScale 1s ease forwards;
+    }
+
+    @keyframes fadeInScale {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
   </style>
 </head>
@@ -154,6 +169,16 @@
 
     // Rotate every 5 seconds
     setInterval(slideImages, 5000);
+
+    // Confetti burst on load
+    window.onload = () => {
+      confetti({
+        particleCount: 200,
+        spread: 150,
+        origin: { y: 0.7 }
+      });
+    };
+
   </script>
 </body>
 </html>
