@@ -1,0 +1,45 @@
+{
+  "name": "lydiahapp",
+  "license": "0BSD",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "build:preview": "eas build --platform android --profile preview"
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~5.0.4",
+    "@react-native-async-storage/async-storage": "^2.1.2",
+    "@react-native-community/datetimepicker": "8.3.0",
+    "@react-navigation/bottom-tabs": "^7.3.13",
+    "@react-navigation/native": "^7.1.9",
+    "badgin": "^1.2.3",
+    "expo": "~53.0.9",
+    "expo-blur": "~14.1.4",
+    "expo-clipboard": "~7.1.4",
+    "expo-linear-gradient": "~14.1.4",
+    "expo-notifications": "~0.31.2",
+    "expo-status-bar": "~2.2.3",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "0.79.2",
+    "react-native-animatable": "^1.4.0",
+    "react-native-confetti-cannon": "^1.5.2",
+    "react-native-gesture-handler": "~2.24.0",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-reanimated-carousel": "^4.0.2",
+    "react-native-safe-area-context": "^5.4.0",
+    "react-native-screens": "^4.10.0",
+    "react-native-snap-carousel": "^3.9.1",
+    "react-native-vector-icons": "^10.2.0",
+    "react-native-web": "^0.20.0",
+    "expo-dev-client": "~5.1.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}

@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "lydiahApp",
+    "slug": "lydiahApp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#CC6CE7"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#CC6CE7"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.kelvin_einstein.lydiahApp"
+    },
+    "web": {
+      "favicon": "./assets/logo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "686519e0-c2a4-4f58-8a26-6ebdfb061308"
+      }
+    },
+    "owner": "kelvin_einstein"
+  }
+}
