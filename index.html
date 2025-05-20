@@ -56,16 +56,16 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #b83280, #bbb);
       color: #333;
       text-align: center;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-size: cover;
-      background-position: center;
+      flex-direction: column;
       transition: background-image 1s ease-in-out;
+      padding: 1rem;
     }
 
     .container {
@@ -74,40 +74,69 @@
       backdrop-filter: blur(5px);
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      width: 90%;
       max-width: 800px;
       z-index: 1;
       position: relative;
+      margin: 20px 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transform: scale(0.95);
+      animation: fadeInScale 1s ease forwards;
+    }
+
+    .container:first-child::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      background-color: rgba(10, 10, 10, 0.6);
+      border-radius: 20px;
+    }
+
+    .container > * {
+      position: relative;
+      z-index: 2;
     }
 
     h1 {
       font-size: 2rem;
       margin-bottom: 1rem;
-      color: #bbb;
-      background-color: rgba(10, 10, 10, 0.694);
+      color: #fff;
       padding: 20px 10px;
     }
 
     p {
       font-size: 1.1rem;
-      margin-bottom: 2rem;
-      color: #b83280;
+      margin-bottom: 1rem;
+      color: #eee;
       font-weight: bold;
     }
 
-    a.download-btn {
+    .download-btn,
+    button {
       background: #b83280;
       color: white;
       padding: 0.8rem 1.5rem;
       text-decoration: none;
       border-radius: 10px;
       font-size: 1rem;
-      transition: background 0.3s ease;
-      margin-top: 150px;
+      transition: background 0.3s ease, transform 0.2s ease;
+      border: none;
+      cursor: pointer;
+      margin: 0.5rem;
     }
 
-    a.download-btn:hover {
+    .download-btn:hover,
+    button:hover {
       background: #8a245b;
+      transform: scale(1.05);
     }
 
     .heart {
@@ -118,14 +147,12 @@
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    .container {
-      opacity: 0;
-      transform: scale(0.95);
-      animation: fadeInScale 1s ease forwards;
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
     }
 
     @keyframes fadeInScale {
@@ -134,6 +161,55 @@
         transform: scale(1);
       }
     }
+
+    input[type="range"] {
+      appearance: none;
+      height: 5px;
+      border-radius: 5px;
+      background: #b83280;
+      outline: none;
+      cursor: pointer;
+      width: 70%;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    video {
+      width: 100%;
+      max-height: 500px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      object-fit: cover;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      .download-btn,
+      button {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+      }
+      .container{
+        width: 100%;
+      }
+      video{
+        height: auto;
+      }
+      input[type="range"] {
+        width: 100%;
+      }
+      .controls input{
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -141,12 +217,30 @@
     <h1>Download Lydiah App 💕</h1>
     <p>For Android devices ( 88MBs )</p>
     <div style="margin-top: 2rem;">
-      <p style="color:#b83280;">Scan to Download</p>
+      <p>Scan to Download</p>
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/VladimirGagarin/lydia/releases/download/v1.0/application-ff39a78d-b808-44a7-9e51-795b12341eac.1.apk" alt="QR Code to Download App" style="border-radius: 10px; width: 300px; height: 300px;" />
     </div>
-
+    <br></br>
+    <br></br>
     <a href="https://github.com/VladimirGagarin/lydia/releases/download/v1.0/application-ff39a78d-b808-44a7-9e51-795b12341eac.1.apk" class="download-btn" download>Download APK</a>
     <div class="heart">❤️</div>
+  </div>
+  <div class="container">
+    <video id="trailerVideo" width="100%" style="border-radius: 10px; margin-bottom: 20px; height:auto;">
+      <source src="lydvid.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Custom Controls -->
+    <div style="margin-bottom: 20px;" class="controls">
+      <!-- Progress Bar -->
+      <input type="range" id="progressBar" value="0" />
+      
+      <!-- Mute/Unmute Button -->
+      <button onclick="toggleMute()" id="muteBtn">🔊</button>
+      <button onclick="playTrailer()" id="playBtn">▶</button>
+    </div>
+
   </div>
 
   <script>
@@ -160,7 +254,7 @@
     let currentIndex = 0;
 
     function slideImages() {
-      document.body.style.backgroundImage = `url('${images[currentIndex]}')`;
+      document.querySelectorAll('.container')[0].style.backgroundImage = `url('${images[currentIndex]}')`;
       currentIndex = (currentIndex + 1) % images.length;
     }
 
@@ -168,7 +262,7 @@
     slideImages();
 
     // Rotate every 5 seconds
-    setInterval(slideImages, 5000);
+    setInterval(slideImages, 8000);
 
     // Confetti burst on load
     window.onload = () => {
@@ -178,6 +272,48 @@
         origin: { y: 0.7 }
       });
     };
+
+    const video = document.getElementById('trailerVideo');
+    const  playBtn = document.getElementById('playBtn');
+
+    let isPlaying = false;
+
+    function playTrailer() {
+      isPlaying = !isPlaying;
+
+      if(isPlaying){
+        video.play();
+      }
+      else{
+        video.pause();
+      }
+      
+      playBtn.innerHTML = isPlaying ? '⏸' : '▶'
+    }
+
+
+    const progressBar = document.getElementById('progressBar');
+    const muteBtn = document.getElementById('muteBtn');
+
+    // Update progress bar as video plays
+    video.addEventListener('timeupdate', () => {
+      const percent = (video.currentTime / video.duration) * 100;
+      progressBar.value = percent || 0;
+    });
+
+    // Allow user to scrub through video
+    progressBar.addEventListener('input', () => {
+      const seekTime = (progressBar.value / 100) * video.duration;
+      video.currentTime = seekTime;
+    });
+
+    // Toggle mute
+    function toggleMute() {
+      video.muted = !video.muted;
+      muteBtn.innerHTML = video.muted ? '🔇' : '🔊';
+    }
+
+
 
   </script>
 </body>
